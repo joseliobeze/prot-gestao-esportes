@@ -17,6 +17,8 @@ class AlunoTestCase(TestCase):
         aluno.altura = 1.65
         aluno.peso = 45.50
         aluno.tipo_sanguinio = 'AB'
+        aluno.email = 'teste@gmail.com'
+        
         aluno.cep = 65750000
         aluno.estado = 'GO'
         aluno.cidade = 'Aguas Lindas'
@@ -24,6 +26,7 @@ class AlunoTestCase(TestCase):
         aluno.data_cadastro = date.today()
         aluno.data_atualizacão = date.today()
         aluno.save()
+      
 
         self.assertIs(aluno.id_aluno, 1)
         self.assertIs(aluno.num_matricula, 'turma12')
@@ -32,6 +35,7 @@ class AlunoTestCase(TestCase):
         self.assertIs(aluno.rg, 123456789)
         self.assertEqual(aluno.sexo, 'Masculino')
         self.assertEquals(aluno.idade, 18)
+        self.assertIs(aluno.email, aluno.nome)
         self.assertIs(aluno.contAlunos, 1)
         aluno.delete()
         self.assertIs(aluno.contAlunos, 0)
