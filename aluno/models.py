@@ -7,11 +7,17 @@ TIPO_SEXO = [
     ('MASC', 'Masculino')
     ]
 
+TIPO_STATUS = [
+   (True,  'Ativo'),
+   (False, 'inativo')
+]
 
-class Endereços(models.Model):
-    pass
+BOLSISTA = [
+    (True, 'Sim'),
+    (False, 'Não')
+]
 
-class PaisResponsaveis(models.Model):
+class dadosEscolinha(models.Model):
     pass
 
 class Aluno(models.Model):  
@@ -38,6 +44,7 @@ class Aluno(models.Model):
     estado = models.CharField(max_length=30, blank=True, null=True, default='')
     cidade = models.CharField(max_length=50, blank=True, null=True, default='')
     rua = models.CharField(max_length=50, blank=True, null=True, default='')
+    escolinha = models.ForeignKey(dadosEscolinha, blank=True, null=True, on_delete=models.CASCADE)
     data_cadastro = models.DateTimeField('Cadastrado em', auto_now_add=True)
     data_atualizacão = models.DateTimeField('Atualizado em', auto_now=True)
 
@@ -45,7 +52,7 @@ class Aluno(models.Model):
     @property
     def contAlunos(self):
         """ Conta a quantidade de aluno """
-        cadastros=Aluno.objects.all()
+        cadastros = Aluno.objects.all()
         return cadastros.count()
 
     @property
