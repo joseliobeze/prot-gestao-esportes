@@ -4,31 +4,36 @@ from datetime import date
 
 
 class AlunoTestCase(TestCase):
-    def setUp(self):
-        self.aluno = Aluno()
-        #self.aluno1 = Aluno.objects.create(nome='Joselio', sobrenome='Silva', nascimento= '2000-9-28')
-        self.aluno.nome = 'Joselio'
-        self.aluno.sobrenome = 'Silva'
-        self.aluno.nascimento = date(2000,9,28)
+    def testcampos_models(self):
+        """testes de campo e e comportamento das açoes e funções"""
+        aluno = Aluno()
+        aluno.num_matricula = 'turma12'
+        aluno.nome = 'Joselio'
+        aluno.sobrenome = 'Silva'
+        aluno.nascimento = date(2000,9,28)
+        aluno.rg = 123456789
+        aluno.cpf = 987654321
+        aluno.sexo = 'Masculino'
+        aluno.altura = 1.65
+        aluno.peso = 45.50
+        aluno.tipo_sanguinio = 'AB'
+        aluno.cep = 65750000
+        aluno.estado = 'GO'
+        aluno.cidade = 'Aguas Lindas'
+        aluno.rua = 'sem nome'
+        aluno.data_cadastro = date.today()
+        aluno.data_atualizacão = date.today()
+        aluno.save()
 
-        self.aluno1=Aluno()
-        self.aluno1.nome = 'marcelo'
-        self.aluno1.sobrenome = 'borges'
-        self.aluno1.nascimento = date(2001,10,28)
-      
-
-
-    def testnome_completo(self):
-        self.assertEquals(self.aluno.nome_completo,'Joselio Silva')
-        self.assertEquals(self.aluno1.nome_completo, 'marcelo borges')
-
-    def testnascimento(self):
-        self.assertEquals(self.aluno.nascimento,  date(2000,9,28))
-        self.assertEquals(self.aluno1.nascimento,  date(2001,10,28))
-
-
-    def testidade(self):
-        self.assertEquals(self.aluno.idade, 18)
-        self.assertEquals(self.aluno1.idade, 17)
+        self.assertIs(aluno.id_aluno, 1)
+        self.assertIs(aluno.num_matricula, 'turma12')
+        self.assertEquals(aluno.nome_completo,'Joselio Silva')
+        self.assertEquals(aluno.nascimento, date(2000,9,28))
+        self.assertIs(aluno.rg, 123456789)
+        self.assertEqual(aluno.sexo, 'Masculino')
+        self.assertEquals(aluno.idade, 18)
+        self.assertIs(aluno.contAlunos, 1)
+        aluno.delete()
+        self.assertIs(aluno.contAlunos, 0)
 
         
