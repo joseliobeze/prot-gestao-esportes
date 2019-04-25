@@ -7,15 +7,7 @@ TIPO_SEXO = [
     ('MASC', 'Masculino')
     ]
 
-TIPO_STATUS = [
-   (True,  'Ativo'),
-   (False, 'inativo')
-]
 
-BOLSISTA = [
-    (True, 'Sim'),
-    (False, 'Não')
-]
 
 class dadosEscolinha(models.Model):
     pass
