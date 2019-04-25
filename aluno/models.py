@@ -36,7 +36,7 @@ class Aluno(models.Model):
 
     @property
     def contAlunos(self):
-        """ Conta a quantidade de aluno: Obs.. ainda não foi testada """
+        """ Conta a quantidade de aluno """
         cadastros=Aluno.objects.all()
         return cadastros.count()
 
