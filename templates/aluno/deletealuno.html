@@ -1,0 +1,14 @@
+{% extends 'system/base.html' %}
+
+{% block title %} Deletando {{aluno.nome_completo}} {% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+	<h1>Editando {{aluno.nome_completo}}</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" class="btn btn-success" value="Editar Cadastro" name="">
+	</form>
+</div>
+{% endblock %}
