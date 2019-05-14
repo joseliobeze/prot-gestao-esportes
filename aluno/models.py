@@ -12,8 +12,6 @@ TIPO_SEXO = [
 class dadosEscolinha(models.Model):
     pass
 
-def aluno_diretorio_armazena_imgs_path(instance, filename):
-    return f'aluno_{instance.Aluno.id_aluno}/{filename}'
 
 class Aluno(models.Model):  
     id_aluno = models.AutoField('Id do Aluno', primary_key=True)
