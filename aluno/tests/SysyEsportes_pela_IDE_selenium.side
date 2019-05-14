@@ -1,0 +1,89 @@
+{
+  "id": "1fdda08e-4352-4ec7-ad8c-b835a4ab2590",
+  "version": "2.0",
+  "name": "SysyEsportes",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "e26c7ab7-09fd-4b30-9d5e-30fde9f619fd",
+    "name": "login_teste",
+    "commands": [{
+      "id": "7fdf9852-63c7-4de1-bb34-26179b43772c",
+      "comment": "",
+      "command": "open",
+      "target": "/accounts/login/?next=/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "169b168f-7b3e-4c4c-808e-825e314f582f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "85fea208-f9d4-40d6-88b8-679c6cbe8913",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_username",
+      "targets": [
+        ["id=id_username", "id"],
+        ["name=username", "name"],
+        ["css=#id_username", "css:finder"],
+        ["xpath=//input[@id='id_username']", "xpath:attributes"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "7918c47f-a9a2-40a2-bbc1-af0f2bc315c1",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_password",
+      "targets": [
+        ["id=id_password", "id"],
+        ["name=password", "name"],
+        ["css=#id_password", "css:finder"],
+        ["xpath=//input[@id='id_password']", "xpath:attributes"],
+        ["xpath=//p[2]/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "8a0b155a-4a19-46ac-9fcd-229455b98c2e",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=id_password",
+      "targets": [
+        ["id=id_password", "id"],
+        ["name=password", "name"],
+        ["css=#id_password", "css:finder"],
+        ["xpath=//input[@id='id_password']", "xpath:attributes"],
+        ["xpath=//p[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "8a96db85-17f4-4ae8-9c87-11ba57767595",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sair",
+      "targets": [
+        ["linkText=Sair", "linkText"],
+        ["css=.nav-link:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Sair')]", "xpath:link"],
+        ["xpath=//div[@id='navbarSupportedContent']/ul/li[4]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/accounts/logout')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Sair')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "e504d033-35ed-4d4a-bd6f-8b143c2a7915",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e26c7ab7-09fd-4b30-9d5e-30fde9f619fd"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

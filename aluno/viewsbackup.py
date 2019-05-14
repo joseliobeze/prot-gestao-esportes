@@ -27,7 +27,7 @@ def ListaAlunos(request):
 
 		alunos = paginator.get_page(page)
 
-	return render(request, 'aluno/listaluno.html', {'alunos': alunos})
+	return render(request, '/aluno/listaluno.html', {'alunos': alunos})
 
 @login_required
 def CadastroAluno(request):
