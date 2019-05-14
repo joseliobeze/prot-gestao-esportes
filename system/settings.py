@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import decouple
+import dj_database_url
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +26,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ')j&)40#4a4*!(zu!*05)k!nw^^p48fr5by+o*ouq7(lmr0_7d6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG =True
+#DEBUG = decouple.config('DEBUG', default=False, cast=bool)
+
+#DATABASE_URL = sqlite://prot-gestao-esportes/db.sqlite3
 
 ALLOWED_HOSTS = []
 
@@ -86,6 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #'default': dj_database_url.config(default=decouple.config('DATABASE_URL'))
+
     }
 }
 
