@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 
 
 from .models import Aluno
@@ -29,35 +29,38 @@ def ListaAlunos(request):
 
 	return render(request, 'aluno/listaluno.html', {'alunos': alunos})
 
-@login_required
-def CadastroAluno(request):
 
-	form = AlunoForm(request.POST or None)
-	if request.method == "POST":
+@login_required
+def cadastro(request):
+	if request.method == 'POST':
+		form = AlunoForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
-			messages.info(request, 'Aluno Cadastrado com sucesso.')
-			return redirect('/aluno/listaluno', {})
-	# Retorna a pagina com form vazio ou erros:
-	return render(request, 'aluno/cadastralunos.html', {'form': form}, {})
+			messages.info(request, 'Aluno Cadastro com sucesso')
+			return redirect('/aluno/listaluno')
+	else:
+		form = AlunoForm()
+	return render(request, 'aluno/cadastro.html', {'form':form})
+
 
 @login_required
 def EditarCadastro(request, id_aluno):
 
 	aluno = get_object_or_404(Aluno, pk=id_aluno)
-	form = AlunoForm(instance=aluno)
-	context = {'form': form, 'aluno':aluno}
 	if request.method == "POST":
-		form = AlunoForm(request.POST or None, instance
+		form = AlunoForm(request.POST, request.FILES, instance
 			= aluno)
+
 		if form.is_valid():
+			form = form.save(commit=False)
 			form.save()
 			messages.info(request,'Cadastro atualizado com sucesso.')
 			return redirect('/aluno/listaluno')
-		else:
-			return render(request, 'aluno/editcadastro.html', {'form':form, 'aluno':aluno})
+		
 	else:
-		return render(request, 'aluno/editcadastro.html', context)
+		form = AlunoForm(instance=aluno)
+	return render(request, 'aluno/editcadastro.html', {'form':form})
+
 
 @login_required
 def DeleteAluno(request, id_aluno):
@@ -68,7 +71,5 @@ def DeleteAluno(request, id_aluno):
 
 @login_required
 def VisualizaAluno(request, pk):
-
-	template_name = {}
-	template_name['form'] =  get_object_or_404(Aluno, pk=pk)
-	return render(request, 'aluno/visualizaluno.html', template_name)
+	forms =  Aluno.objects.filter(pk=pk)
+	return render(request, 'aluno/visualizaluno.html', {'forms':forms})

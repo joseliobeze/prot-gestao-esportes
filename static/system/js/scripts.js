@@ -10,7 +10,7 @@ $(document).ready(function(){
 		e.preventDefault();
 
 		var delLink = $(this).attr('href');
-		var result = confirm('Quer deletar este aluno');
+		var result = confirm('Quer deletar este aluno?');
 		if (result) {
 			window.location.href = delLink;
 		}
@@ -18,9 +18,9 @@ $(document).ready(function(){
 
 	});
 
-	$(searchBtn).on('click', function()){
+	$(searchBtn).on('click', function(){
 		searchForm.submit();
-	}
+	});
 
 	
 

@@ -7,4 +7,4 @@ class AlunoForm(forms.ModelForm):
 
 	class Meta:
 		model = Aluno
-		fields = 'id_aluno','nome', 'sobrenome', 'nascimento', 'cpf', 'img'
+		fields = 'nome', 'sobrenome', 'nascimento', 'cpf', 'img'
