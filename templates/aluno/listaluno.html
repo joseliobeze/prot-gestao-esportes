@@ -7,7 +7,7 @@
 {% block content %}
 <div class="offset-1 col-10 list-div">
 	<h1>Lista de Alunos</h1>
-	<a id="add-link" href="/aluno/cadastraluno">
+	<a id="add-link" href="{% url 'aluno:cadastro_aluno' %}">
 		<div class="col-2 add-div">
 			<i class="fas fa-plus"></i>Adicionar Aluno
 		</div>
@@ -16,7 +16,7 @@
 		<!-- o methodo get para buscas</!-->
 		<form method="GET" id="search-form">
 			<input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome do aluno para buscar" value="{{request.GET.search}}">
-			<label for="search"><i class="fas fa-search" ></i></label>
+			<label id="search-btn"><i class="fas fa-search" ></i></label>
 	</form>
 	</div>
 
@@ -32,11 +32,11 @@
 	<ul class="aluno-list">
 		{% for aluno in alunos %}	
 		<li class="aluno-item">
-			<span><a href="/aluno/visualizaluno/{{ aluno.id_aluno }}">
+			<span><a href="{% url 'aluno:detalhe_aluno' aluno.pk %}">
 			{{aluno.id_aluno}} {{aluno.nome_completo}}
 			</a></span>
-			<span><a href="/aluno/deletaluno/{{aluno.id_aluno}}" class="delete-btn"><i class="fas fa-trash"></i></a></span>
-			<span><a href="/aluno/editcadastro/{{ aluno.id_aluno }}"><i class="fas fa-edit"></i></a></span>
+			<span><a href="{% url 'aluno:delete_aluno' aluno.pk%}" class="delete-btn"><i class="fas fa-trash"></i></a></span>
+			<span><a href="{% url 'aluno:edita_cadastro' aluno.pk %}"><i class="fas fa-edit"></i></a></span>
 		</li>
 		{% endfor %}
 	</ul>		

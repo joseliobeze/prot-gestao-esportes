@@ -5,17 +5,46 @@
 {% block title %}Dados do Aluno{% endblock%}
 
 {% block content %}
-<div class="offset-1 col-10 list-div">
-	
-	<h1>{{form.nome_completo}}</h1>	
-	{% if not form.img %}
-	<img src="{% static '_img/user.png' %}" alt="{{form.nome}}">
-	
-	{% else %}
-	<img id="img-alu" src="{{ form.img.url }}" alt="{{form.nome}}" >
-	{% endif %}
-	
 
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id do aluno</th>
+			<th>Nome Completo</th>
+			<th>Nascimento</th>
+			<th>Idade</th>
+			<th>RG</th>
+			<th>CPF</th>
+			<th>Foto</th>
+			<th>Id do aluno</th>
+			<th>Nome Completo</th>
+			<th>Nascimento</th>
+			<th>Idade</th>
+			<th>RG</th>
+			<th>CPF</th>
+			<th>Foto</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for form in forms %}
+		<tr>
+			<th>{{form.id_aluno}}</th>
+			<th>{{form.nome_completo}}</th>
+			<th>{{form.nascimento}}</th>
+			<th>{{form.idade}}</th>
+			<th>{{form.rg}}</th>
+			<th>{{form.cpf}}</th>
+			<th>
+				{% if form.img %}
+					<img src="{{ form.img.url }}" alt="{{form.nome}}">
+				{% else %}
+					<img src="{% static '_img/user.png' %} " alt="{{form.nome}}">
+				{% endif %}
+			</th>
+		</tr>
+	
+	{% endfor %}
+	</tbody>
+</table>
 
-</div>
 {% endblock %}

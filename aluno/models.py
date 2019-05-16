@@ -37,10 +37,18 @@ class Aluno(models.Model):
     estado = models.CharField(max_length=30, blank=True, null=True, default='')
     cidade = models.CharField(max_length=50, blank=True, null=True, default='')
     rua = models.CharField(max_length=50, blank=True, null=True, default='')
-    img = models.ImageField(upload_to='aluno/images/', verbose_name='Foto', blank=True) 
+    img = models.ImageField(upload_to='aluno/images/', verbose_name='Foto', null=True,  blank=True,) 
     escolinha = models.ForeignKey(dadosEscolinha, blank=True, null=True, on_delete=models.CASCADE)
     data_cadastro = models.DateTimeField('Cadastrado em', auto_now_add=True)
     data_atualizacao = models.DateTimeField('Atualizado em', auto_now=True)
+
+
+    def __str__(self):
+        return self.nome_completo
+
+
+    class Meta:
+        ordering = ['nome']
 
     
     @property
@@ -62,13 +70,9 @@ class Aluno(models.Model):
     def nome_completo(self):
         "Retorna o nome completo do aluno"
         return '{} {}'.format(self.nome, self.sobrenome)
-
-
-    def __str__(self):
-        return self.nome_completo
-
-
-    class Meta:
-        ordering = ['nome']
-        
     
+    
+    def delete(self, *args, **kwargs):
+        self.img.delete()
+        super().delete(*args, **kwargs)
+        
