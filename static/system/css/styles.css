@@ -5,6 +5,10 @@
 
 }
 
+.container-fluid .row {
+	margin: 0;
+}
+
 /* Navbar */
 
 .navbar {
