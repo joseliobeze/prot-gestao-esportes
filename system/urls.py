@@ -10,7 +10,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('aluno/', include('aluno.urls',namespace='aluno')),
     path('', paginicial.Index, name='index'),
+    path('accounts/',include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+
 ]
 
 if settings.DEBUG:
