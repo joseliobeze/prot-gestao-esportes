@@ -27,10 +27,10 @@ SECRET_KEY = ')j&)40#4a4*!(zu!*05)k!nw^^p48fr5by+o*ouq7(lmr0_7d6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG =True
+DEBUG = True
 #DEBUG = decouple.config('DEBUG', default=False, cast=bool)
 
-#DATABASE_URL = sqlite://prot-gestao-esportes/db.sqlite3
+# DATABASE_URL = sqlite://prot-gestao-esportes/db.sqlite3
 
 ALLOWED_HOSTS = []
 
@@ -52,10 +52,6 @@ INSTALLED_APPS = [
 ]
 
 
-
-
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,7 +67,7 @@ ROOT_URLCONF = 'system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,7 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #'default': dj_database_url.config(default=decouple.config('DATABASE_URL'))
+        # 'default': dj_database_url.config(default=decouple.config('DATABASE_URL'))
 
     }
 }

@@ -1,0 +1,98 @@
+{% extends 'system/baseb.html'%}
+
+{% block title %} Listade Alunos {% endblock%}
+{% load static %}}
+
+{% block content %}
+
+</script>
+<div class="row">
+  <div class="col-sm-3">
+    <h2>Alunos</h2>
+  </div>
+  <div class="col-sm-6">
+    <form method="GET" id="search-form" action="">
+      <div class="input-group">
+        <input name="search" class="form-control" id="search" type="text" placeholder="Pesquisar Aluno" value="{{request.GET.search}}">
+        <button class="btn btn-secondary" type="submit">
+           <span class="fa fa-search"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="col-sm-3">
+    <a href="{% url 'aluno:cadastro_aluno' %}" class="btn btn-primary pull-right h2">Cadastrar</a>
+  </div>
+</div> <!-- /#top -->
+
+<!--Mensagens-->
+{% if messages %}
+  <div class="alert alert-info alert-dismissible fade show">
+    <ul class="messages">
+      {% for message in messages %}
+        <h5 {% if message.tags %}class="alert {{message.tags}}" {% endif %}>{{message}}</h5>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {% endfor %}  
+    </ul>
+  </div>
+{% endif %}
+
+<!--TABELA-->
+<div class="table-responsive table-responsive{-sm|-md|-lg|-xl}">
+  <table class="table table-hover table-bordered" cellspacing="0" cellpadding="0">
+    {% if aluno_list %}
+    <p class="card-text">
+            Aqui está a lista de <code> Alunos </code>cadastrados.
+    </p>
+    <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>Nome_completo</th>
+        <th>Nascimento</th>
+        <th>Idade</th>
+        <th>Rg</th>
+        <th>Telefone</th>
+        <th>Celular</th>
+        <th class="">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for A in aluno_list %}
+      <tr>
+        <th>{{ A.pk }}</th>
+        <th>{{ A.nome_completo }}</th>
+        <th>{{ A.nascimento|date:"d-m-Y"}}</t}}h>
+        <th>{{ A.idade }}</th>
+        <th>{{ A.rg }}</th>
+        <th>{{ A.fone1 }}</th>
+        <th>{{ A.fone2 }}</th>
+        <td class="">
+          <a href="{% url 'aluno:detalhe_aluno' A.pk %}" class="view" title="Visualizar" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+          <a href="{% url 'aluno:edita_cadastro' A.pk %}" class="edit" title="Editar/Atualizar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+          <a href="{% url 'aluno:delete_aluno' A.pk %}"class="delete" title="Excluir" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% endif %}
+  </table>
+  </div> <!-- /#list --> 
+  <div class="clearfix">
+    <div class="hint-text text-primary">Exibindo <b>{{aluno_list|length}}</b> de <b>{{tot.count}}</b> entradas.</div>
+      <ul class="pagination">
+          {% if aluno_list.has_previous %}
+          <li class="page-item disabled "><a href="?page={{aluno_list.previous_page_number}}"><i class="fa fa-angle-double-left"></i></a></li>
+          {% endif %}
+          {% if aluno_list.paginator %}
+          <li class="page-item"><a href="?page={{aluno_list.number}}" class="page-link">{{aluno_list.number}}</a></li>
+          <li class="page-item"><a href="#" class="page-link">de</a></li> 
+          <li class="page-item"><a href="?page={{aluno_list.paginator.num_pages}}" class="page-link">{{aluno_list.paginator.num_pages}}</a></li>
+          {% endif %}
+          {% if aluno_list.has_next %}
+          <li class="page-item"><a href="?page={{aluno_list.next_page_number}}"  class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+          {% endif %}
+      </ul>
+    </div>
+  </div>
+  
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'system/base.html' %}
+{% extends 'system/baseb.html' %}
 
 {% load static %}
 
@@ -15,14 +15,9 @@
 			<th>Idade</th>
 			<th>RG</th>
 			<th>CPF</th>
-			<th>Foto</th>
-			<th>Id do aluno</th>
-			<th>Nome Completo</th>
-			<th>Nascimento</th>
-			<th>Idade</th>
-			<th>RG</th>
-			<th>CPF</th>
-			<th>Foto</th>
+			<th>FOTO</th>
+			<th>CADASTRADO EM</th>
+			<th>ATUALIZADO EM</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -30,17 +25,19 @@
 		<tr>
 			<th>{{form.id_aluno}}</th>
 			<th>{{form.nome_completo}}</th>
-			<th>{{form.nascimento}}</th>
+			<th>{{form.nascimento|date:'d/m/Y'}}</th>
 			<th>{{form.idade}}</th>
 			<th>{{form.rg}}</th>
 			<th>{{form.cpf}}</th>
-			<th>
+			<th class="foto">
 				{% if form.img %}
 					<img src="{{ form.img.url }}" alt="{{form.nome}}">
 				{% else %}
 					<img src="{% static '_img/user.png' %} " alt="{{form.nome}}">
 				{% endif %}
 			</th>
+			<th>{{form.data_cadastro}}</th>
+			<th>{{form.data_ATUALIZACAO}}</th>
 		</tr>
 	
 	{% endfor %}

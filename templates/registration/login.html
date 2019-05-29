@@ -1,14 +1,14 @@
-{% extends 'system/base.html' %}
+{% extends 'system/baseb.html' %}
 
 {% block title %} Entrar no SysEsportes{% endblock %}
 
 {% block content %}
 <div class="row">
-	<div class="col-md-4 offset-md-4">
+	<div class="col-md-4 offset-md-3">
 		<div class="card auth-card">
 			<div class="card body">
-				<h4 class="cad-title text-center">Entrar no SysEsportes</h4>
-				<form <form class="form-horizontal" method="post">
+				<h4 class="cad-title text-center"> Entrar no SysEsportes</h4>
+				<form form class="form-horizontal" method="post">
 					{% csrf_token %}
 					<input type="hidden" name="next" value="{{ next }}">
 					{{form.as_p}}

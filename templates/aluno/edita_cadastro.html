@@ -1,0 +1,166 @@
+{% extends 'system/baseb.html' %}
+ 
+{% load static %}
+{% block title %} Atualização cadastral {% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-12 text-center my-2">
+		<h4 class="desplay-4">Atualizando Cadastro</h4>
+	</div>		
+</div>
+<ul class="nav nav-tabs">
+	<li class="nav-item"><a href="#aluno" class="nav-link active" data-toggle="tab">Aluno</a></li>
+	<li class="nav-item"><a href="#escolinha" class="nav-link" data-toggle="tab">Escolar</a></li>
+	<li class="nav-item"><a href="#medica" class="nav-link" data-toggle="tab">Ficha Mdica</a></li>
+</ul>
+<div class="tab-content">
+	<div class="tab-pane fade show active" id="aluno">
+		<div class="row justify-content">
+			<div class="offset-1 col-10 list-div">
+				<h4 class="mt-2">Dados do aluno </h4>
+				
+				<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+					<div class="form-row">
+						<div class="for-group col-md-6">
+							<div class="form-group ">
+								<label for="id_nome">Nome</label>
+								{{ form.nome }}	
+							</div>
+							<div class="form-group ">
+								<label for="id_sobrenome">Sobrenome</label>
+								{{ form.sobrenome }}
+							</div>
+							<div class="form-group">
+							 	<label for="id_nascimento">Data Nascimento</label>
+								{{ form.nascimento }}					
+							</div>
+							
+						</div>
+						<div class="form-group col-md-3">
+							<div class="text-muted col-sm-4">
+								{% if form.img.value %}
+								<img src="{{ form.img.value.url }}" style="width:200px; height: 240px;">
+								{% else %}
+								<img src="{% static '_img/user.png' %} " style="width:200px; height: 240px;">
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<div class="form-group ">
+								<label for="id_img" class="custom-file-label">Foto</label><br/><br/><br/>
+								{{ form.img }}
+							</div>
+						</div>
+						<div class="form-row">	
+							
+							<div class="form-group col-sm-3">
+								<label for="id_rg">RG / Registro</label>
+								{{ form.rg }}	
+							</div>				
+							<div class="form-group col-sm-3">
+								<label for="id_cpf">CPF</label>
+								{{ form.cpf }}	
+							</div>
+							<div class="form-group col-sm-2">
+								<label for="id_sexo">Sexo</label>
+								{{ form.sexo }}
+							</div>
+							<div class="form-group col-sm-2">
+								<label for="id_altura">Altura</label>
+								{{ form.altura }}	
+							</div>
+							<div class="form-group col-sm-2">
+								<label for="id_peso">Peso</label>
+								{{ form.peso }}	
+							</div>	
+							<div class="form-group col-sm-2">
+								<label for="id_tipo">Tipo Sanguinio</label>
+								{{ form.tipo_sanguinio }}	
+							</div>
+							<div class="form-group col-sm-2">
+								<label for="id_tel1">Telefone</label>
+								{{ form.fone1 }}	
+							</div>	
+							<div class="form-group col-sm-2">
+								<label for="id_tel2">Celular</label>
+								{{ form.fone2 }}	
+							</div>	
+							<div class="form-group col-sm-2">
+								<label for="id_te3l">Wahtsapp</label>
+								{{ form.fone3 }}	
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="id_email">Usuário</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="id_mail">@</span>
+									</div>
+									{{ form.email }}
+									
+									<div class="invalid-tooltip">
+						          	Por favor, escolha um usuário válido e único.
+									</div>
+						      	</div>
+						    </div>
+							<div class="form-group col-sm-6">
+								<label for="id_pai">Pai</label>
+								{{ form.pai }}	
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="id_tel4">Telefone</label>
+								{{ form.fone4 }}	
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="id_mae">Mãe</label>
+								{{ form.mae }}	
+							</div>		
+							<div class="form-group col-sm-6">
+								<label for="id_tel5">Telefone</label>
+								{{ form.fone5 }}	
+							</div>
+							<div class="form-group col-sm-3">
+								<label for="id_cep">CEP</label>
+								{{ form.cep }}	
+							</div>
+							<div class="form-group col-sm-3">
+								<label for="id_estado">Estado</label>
+								{{ form.estado }}	
+							</div>
+							<div class="form-group col-sm-3">
+								<label for="id_cidade">Cidade</label>
+								{{ form.cidade }}	
+							</div>
+							<div class="form-group col-sm-3">
+								<label for="id_bairro">Bairro</label>
+								{{ form.bairro }}	
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="id_rua">Logradouro</label>
+								{{ form.rua }}	
+							</div>
+							<div class="form-group col-sm">
+								
+								<label for="id_escolinha">Escolinha</label>
+								{{form.escolinha}}
+							</div>
+							
+						</div>
+					<input type="submit" class="btn btn-primary" value="Salvar">
+				<a type="button" href="{% url 'aluno:lista_aluno' %}" class="btn btn-danger" value="Cancelar">Cancelar</a>
+				</form>
+				</div><br/>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade"id="escolinha">
+		<h4 class="mt-2">Ficha escolinha </h4>
+	</div>
+	<div class="tab-pane fade" id="medica">
+		<h4 class="mt-2">Ficha Médica</h4>
+	</div>
+</div>
+
+{% endblock %}
+ 

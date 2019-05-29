@@ -1,0 +1,57 @@
+{% extends 'system/baseb.html' %}
+
+{% load static %}
+
+{% block title %}deletando Aluno{% endblock%}
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="text-dark">Você tem certeza?</h1>
+			<p class="lead text-dark" >Você realmente deseja excluir esses registros? Este processo não pode ser desfeito.</p>
+			<table class="table">
+			    <thead class="thead-dark">
+			      <tr>
+			        <th>Nome</th>
+			        <th>Nascimento</th>
+			        <th>Celular</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+				{% csrf_token %}
+			      <tr class="text-danger">
+			        <th>{{ aluno.nome_completo }}</th>
+			        <th>{{ aluno.nascimento|date:"d-m-Y"}}</t}}h>
+			        <th>{{ aluno.fone2 }}</th>
+			        </td>
+			      </tr>
+			    </tbody>
+			</table>
+			<input type="submit" class="btn btn-danger" value="Excluir" name="">
+			<a href="/aluno/lista" class="btn btn-primary" value="Cancelar" name="">Cancelar</a>
+		</div>
+	</div>
+</form>
+{% endblock %}
+
+ <table class="table table-hover table-bordered" cellspacing="0" cellpadding="0">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome_completo</th>
+        <th>Nascimento</th>
+        <th>Celular</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for A in aluno_list %}
+      <tr>
+        <th>{{ A.nome_completo }}</th>
+        <th>{{ A.nascimento|date:"d-m-Y"}}</t}}h>
+        <th>{{ A.fone2 }}</th>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

@@ -1,6 +1,9 @@
 env
 .cache
 *.sqlite3
-__pycache__
+*__pycache__
 *.png
 *.jpg
+*.vscode
+bd.sqlite3
+*__pycache__

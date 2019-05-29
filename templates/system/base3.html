@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="tp-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{% static 'system/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'system/css/stile.css' %}" rel="stylesheet">
+  <title>{% block title %}{% endblock %}</title>
+
+</head>
+
+<body>
+
+
+ <nav class="navbar navbar-inverse navbar-expand-lg">
+  <div class="container-fluid">
+   <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+     <span class="sr-only">Toggle navigation</span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">SysEsportes</a>
+   </div>
+   <div id="navbar" class="collapse navbar-collapse" >
+    <ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+     <li><a href="{% url 'aluno:lista_aluno' %}"> Alunos </a></li>
+     <li><a href="#">Professores</a></li>
+     <li><a href="#">Carteirinha</a></li>
+     <li><a href="#">Ajuda</a></li>
+     {% else %} 
+     <li><a href="/accounts/login">Entrar</a></li>
+     {% endif %}     
+     <li><a href="#">Sobre-não</a></li>
+     {% if user.is_authenticated %}
+      <li><a href="#">Sair</a></li>
+     {% endif %}
+    </ul>
+   </div>
+  </div>
+ </nav>
+ 
+{% block content %}
+{% endblock %}
+  
+<footer>
+    <p>SysEsporte, Gestão para seu negocio</p>
+</footer>
+ <script src="{% static 'system/js/jquery.min.js' %}"></script>
+<script src="{% static 'system/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
